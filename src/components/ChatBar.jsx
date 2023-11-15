@@ -1,22 +1,73 @@
 import { useEffect, useState } from "react";
+import { CgSpinner } from "react-icons/cg"
+import { FiArrowUp } from "react-icons/fi";
 
-const ChatBar = () => {
+import axios from "axios";
+
+const ChatBar = ({chatList, setChatList, useOpenAPI}) => {
 
     const [newMessage, setNewMessage ] = useState("");
-
-    useEffect(() => console.log(newMessage), [newMessage]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onSubmitChat = async (e) => {
+        console.log("Send: ", newMessage);
+
         try {
             e.preventDefault();
 
-            console.log(newMessage);
+            if(!newMessage) return;
 
+            setIsLoading(true);
+
+            let responseMessage;
+
+            if(useOpenAPI){
+                const response = await axios.post(
+                    "https://api.openai.com/v1/chat/completions",
+                    {
+                        "model":"gpt-3.5-turbo",
+                        "messages":[
+                            {
+                                "role": "user",
+                                "content": newMessage,
+                            },
+                        ],            
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${process.env.REACT_APP_OPENAPI_KEY}`,
+                        },
+                    }
+        
+                );
+                responseMessage = response.data.choices[0].message.content
+
+            } else{
+                responseMessage = "현재 ChatGPT에 연결된 상태가 아닙니다."
+            }
+
+            console.log("Receive: ", responseMessage);   
+            setChatList([...chatList, 
+                { 
+                    question: newMessage, 
+                    answer: responseMessage,
+                },
+            ]);
+
+            setNewMessage("");
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
 
     };
+
+    
+    useEffect(() => {
+        console.log(newMessage);
+    }, [newMessage]);
 
     return (
         <div className="bg-gray-300 h-24">
@@ -31,21 +82,25 @@ const ChatBar = () => {
                         focus:border-gray-400`}
                     type="text"
                     value={newMessage}
+                    disabled={isLoading}
                     onChange={(e) => setNewMessage(e.target.value)}
-                    >
-
-                </input>
-                <input 
-                    className={`bg-gray-400 w-32 
-                        text-sm 
+                    placeholder="Message ChatGPT..."
+                />
+                <button
+                    className={`bg-gray-400 w-10 
+                        text-sm
                         py-[12px]
                         hover:bg-white 
-                        active:bg-white`}
+                        active:bg-white
+                        items-center
+                        `}
                     type="submit"
                     value="Send message"
-                    >
-                    
-                </input>
+                    disabled={isLoading}
+                >
+                    {isLoading? (<CgSpinner size={22} />) : (<FiArrowUp size={22} />)}
+                </button>
+
             </form>
         </div>
     );
