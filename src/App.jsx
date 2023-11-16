@@ -32,12 +32,8 @@ const App = () => {
             {useOpenAPI ? "On" : "Off"}
           </button>
         </div>
-        <div className="overflow-y-auto flex-grow">
-          <ChatView chatList={chatList}  />
-        </div>
-        <div className="bg-gray-100 p-2">
-          <ChatBar chatList={chatList} setChatList={setChatList} useOpenAPI={useOpenAPI}/>
-        </div>        
+        <ChatView chatList={chatList}  />
+        <ChatBar chatList={chatList} setChatList={setChatList} useOpenAPI={useOpenAPI} />
       </div>
     </div>
   );
