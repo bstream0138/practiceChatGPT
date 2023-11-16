@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div className="bg-gray-700 min-h-screen max-w-screen-md mx-auto flex">
       <div>
-        <div className="bg-black w-52 text-white">
+        <div className="bg-black w-24 text-white">
             <div className="flex">
                 <img src="/images/openai_chatgpt_circle.png" alt="Logo" className="w-6 h-6 mx-2 my-2" />
                 <span className="ml-2 my-2  font-bold">ChatGPT</span>
