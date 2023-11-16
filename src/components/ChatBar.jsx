@@ -55,6 +55,8 @@ const ChatBar = ({chatList, setChatList, useOpenAPI}) => {
                 },
             ]);
 
+            //useRef -> y좌표를 0으로
+
             setNewMessage("");
         } catch (error) {
             console.error(error);
@@ -98,7 +100,7 @@ const ChatBar = ({chatList, setChatList, useOpenAPI}) => {
                     value="Send message"
                     disabled={isLoading}
                 >
-                    {isLoading? (<CgSpinner size={22} />) : (<FiArrowUp size={22} />)}
+                    {isLoading? (<CgSpinner className="animate-spin-slow" size={22} />) : (<FiArrowUp size={22} />)}
                 </button>
 
             </form>

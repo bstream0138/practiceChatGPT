@@ -7,9 +7,7 @@ const ChatView = ({ chatList }) => {
 
     useEffect(() => {
         if(chatViewRef.current) {
-            requestAnimationFrame(() => {
-                chatViewRef.current.scrollTop = chatViewRef.current.scrollHeight;
-            });
+            chatViewRef.current.scrollTop = chatViewRef.current.scrollHeight;
         }
     }, [chatList]);
 
