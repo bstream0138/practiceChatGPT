@@ -2,7 +2,7 @@ import ChatSideCard from "./ChatSideCard"
 
 const ChatSide = ({chatList}) => {
     return (
-        <ul>
+        <ul className="w-[17vw] overflow-y-auto">
             { chatList?.map((v, i) => (
                 <ChatSideCard key={i} question={v.question} answer={v.answer} />
             ))}

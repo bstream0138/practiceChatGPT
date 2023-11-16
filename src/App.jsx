@@ -24,7 +24,7 @@ const App = () => {
         <ChatSide chatList={chatList}/>      
       </div>
       <div className="bg-gray-100 grow flex flex-col h-screen">
-        <div className="bg-gray-100 font-bold text-lg p-2">
+        <div className="bg-gray-200 font-bold text-lg p-2">
           <span>
             API Connected :  
           </span>

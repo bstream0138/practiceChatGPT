@@ -29,8 +29,24 @@ const ChatSideCard = ({key, question, answer}) => {
                         <button onClick={onClickClose} className="self-end mb-4">
                             <CgCloseR size={20} />
                         </button>
-                        <div className="text-lg font-bold">Q. {question}</div>
-                        <div className="text-lg mt-2 text-semibold">A. {answer}</div>
+                        <div>
+                            <div className="flex">
+                                <img src="/images/github_icon.png" alt="M" className="w-6 h-6" />                    
+                                <span className="ml-2  font-bold">You</span>
+                            </div>
+                            <div className="ml-8 whitespace-pre-wrap">
+                                {question}
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex">
+                                <img src="/images/chatgpt_answer.png" alt="G" className="w-6 h-6" />
+                                <span className="ml-2 font-bold">ChatGPT</span>
+                            </div>
+                            <div className="ml-8 whitespace-pre-wrap">
+                                {answer}
+                            </div>
+                        </div>                                        
                     </div>
                 </div>
             )}
