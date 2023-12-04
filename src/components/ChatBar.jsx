@@ -72,14 +72,15 @@ const ChatBar = ({chatList, setChatList, useOpenAPI}) => {
     }, [newMessage]);
 
     return (
-        <div className="bg-gray-300 h-24">
+        <div className="h-24 p-4">
             <form 
-                className="bg-gray-300 h-full flex items-center px-4"
+                className="bg-white h-full flex items-center rounded-lg"
                 onSubmit={onSubmitChat}
             >
                 <input 
-                    className={`bg-gray-200 grow 
-                        py-2 px-2 border-2 
+                    className={`bg-gray-100 grow 
+                        py-2 px-2 
+                        border-2 border-gray-300 rounded-l-lg 
                         focus:outline-none 
                         focus:border-gray-400`}
                     type="text"
@@ -89,12 +90,12 @@ const ChatBar = ({chatList, setChatList, useOpenAPI}) => {
                     placeholder="Message ChatGPT..."
                 />
                 <button
-                    className={`bg-gray-400 w-10 
+                    className={`bg-gray-200 w-10 flex justify-center items-center
                         text-sm
                         py-[12px]
-                        hover:bg-white 
-                        active:bg-white
-                        items-center
+                        hover:bg-gray-300 
+                        active:bg-gray-300
+                        rounded-r-lg                        
                         `}
                     type="submit"
                     value="Send message"

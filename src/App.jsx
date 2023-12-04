@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import Logo from "./components/Logo"
 import ChatBar from "./components/ChatBar"
 import ChatView from "./components/ChatView"
 import ChatSide from "./components/ChatSide"
@@ -13,27 +14,24 @@ const App = () => {
   };
 
   return (
-    <div className="bg-gray-700 min-h-screen max-w-screen-md mx-auto flex">
-      <div>
-        <div className="bg-black text-white">
-            <div className="flex">
-                <img src="/images/openai_chatgpt_circle.png" alt="Logo" className="w-6 h-6 mx-2 my-2" />
-                <span className="ml-2 my-2  font-bold">ChatGPT</span>
-            </div>
-        </div>
-        <ChatSide chatList={chatList}/>      
+    <div className="bg-gray-100 h-screen flex">
+      <div className="flex-col w-1/6 bg-gray-800 text-white">
+        <Logo />
+        <ChatSide chatList={chatList}/>
       </div>
-      <div className="bg-gray-100 grow flex flex-col h-screen">
-        <div className="bg-gray-200 font-bold text-lg p-2">
-          <span>
-            API Connected :  
-          </span>
+
+      <div className="flex-grow bg-white flex flex-col">
+        <div className="p-4 bg-gray-100 font-bold">
           <button onClick={toggleUseOpenAPI}>
-            {useOpenAPI ? "On" : "Off"}
+            {useOpenAPI ? "ChatGPT-3.5" : "Not connected"}
           </button>
         </div>
-        <ChatView chatList={chatList}  />
-        <ChatBar chatList={chatList} setChatList={setChatList} useOpenAPI={useOpenAPI} />
+        <div className="flex-grow overflow-auto">
+          <ChatView chatList={chatList}  />
+        </div>
+        <div className="p-4">
+          <ChatBar chatList={chatList} setChatList={setChatList} useOpenAPI={useOpenAPI} />
+        </div>
       </div>
     </div>
   );
